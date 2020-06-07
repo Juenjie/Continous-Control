@@ -42,10 +42,16 @@ Create (and activate) a new environment with Python 3.6.
 
 3. Clone the repository (if you haven't already!), and navigate to the `python/` folder.  Then, install several dependencies.
 ```bash
-git clone https://github.com/udacity/deep-reinforcement-learning.git
-cd deep-reinforcement-learning/python
+git clone https://github.com/Juenjie/Continous-Control.git
+cd Continous-Control/python
 pip install .
 ```
+
+4. Create an [IPython kernel](http://ipython.readthedocs.io/en/stable/install/kernel_install.html) for the `Continous-Control` environment.  
+```bash
+python -m ipykernel install --user --name Continous-Control --display-name "Continous-Control"
+```
+
 1. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
 
     - **_Version 1: One (1) Agent_**
