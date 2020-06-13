@@ -50,6 +50,10 @@ class Agent():
         self.critic_target = Critic(state_size, action_size, random_seed).to(device)
         self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC, weight_decay=WEIGHT_DECAY)
 
+        # hard copy
+        self.hard_copy_weights(self.actor_target, self.actor_local)
+        self.hard_copy_weights(self.critic_target, self.critic_local)
+        
         # Noise process
         self.noise = OUNoise(action_size, random_seed)
 
@@ -59,6 +63,11 @@ class Agent():
         self.t_step = 0
         self.epsilon = 1.
     
+    def hard_copy_weights(self, target, source):
+        """ copy weights from source to target network (part of initialization)"""
+        for target_param, param in zip(target.parameters(), source.parameters()):
+            target_param.data.copy_(param.data)
+            
     def step(self, state, action, reward, next_state, done, epsilon_decay, noise_reset):
         """Save experience in replay memory, and use random sample from buffer to learn."""
         # Save experience / reward
